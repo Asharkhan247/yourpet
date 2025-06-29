@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InnerBanner from "../includes/Innerbanner";
+import { Link } from "react-router-dom";
+
 
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user?.email === email && user?.password === password) {
+      localStorage.setItem('isLoggedIn', 'true');
+      navigate('/dashboard');
+    } else {
+      alert('Invalid Credentials');
+    }
+  };
 
 return(<>
 
@@ -15,57 +31,27 @@ return(<>
             <div className="col-md-5">
                 <div className="login_form">
                     <h3 className="form_title">LOG IN</h3>
-                    <form action="checklogin.php" method="post">
+                    <form onSubmit={handleLogin}>
                         <div className="form-group">
                             <div className="form_field mb-3rem">
                                 <input type="email" id="email" aria-describedby="emailHelp" name="email"
-                                    placeholder="Info@Demolink.com" />
-                                <a href="javascript:;"><i className='bx bxs-envelope'></i></a>
+                                    placeholder="Info@Demolink.com" onChange={(e) => setEmail(e.target.value)} />
+                                {/* <a href="javascript:;"><i className='bx bxs-envelope'></i></a> */}
                             </div>
                         </div>
                         <div className="form-group">
                             <div className="form_field mb-4">
-                                <input type="password" id="password" name="password" placeholder="*********" />
-                                <a href="javascript:;"><i className='bx bx-show'></i></a>
+                                <input type="password" id="password" name="password" placeholder="*********" onChange={(e) => setPassword(e.target.value)} />
+                                {/* <a href="javascript:;"><i className='bx bx-show'></i></a> */}
                             </div>
                         </div>
-                        <button type="submit" className="themebtn">Log in</button>
-                        <p>Don't have an account? <a href="javascript:;">Sign Up</a></p>
+                        <button type="submit" className="themebtn" onClick={handleLogin}>Log in</button>
+                        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                     </form>
                 </div>
             </div>
         </div>
-        <div className="row justify-content-center">
-            <div className="col-md-5">
-                <div className="login_form">
-                    <h3 className="form_title">SIGN UP</h3>
-                    <form action="checklogin.php" method="post">
-                        <div className="form-group">
-                            <label for="">Name</label>
-                            <div className="form_field">
-                                <input type="text" id="name" aria-describedby="NameHelp" name="name"
-                                    placeholder="Info@Demolink.com" /> 
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label for="">Email</label>
-                            <div className="form_field">
-                                <input type="email" id="email" aria-describedby="emailHelp" name="email"
-                                    placeholder="Info@Demolink.com" /> 
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label for="">Pasword</label>
-                            <div className="form_field mb-4">
-                                <input type="password" id="password" name="password" placeholder="*********" />
-                                <a href="javascript:;"><i className='bx bx-show'></i></a>
-                            </div>
-                        </div>
-                        <button type="submit" className="themebtn">sign up</button> 
-                    </form>
-                </div>
-            </div>
-        </div>
+      
     </div>
 </section>
 

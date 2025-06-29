@@ -61,50 +61,50 @@ const Header = () => {
         </div>
         <div className="container">
           <div className="header-main">
-            <Link to="home" className="header__logo">
+            <Link to="/" className="header__logo">
               <img src={logo} alt="Logo" className="imgFluid" />
             </Link>
             <ul className="header-main__nav">
               <li>
                 <Link to="/" className={({isActive}) => (isActive ? "active" : "")}>
-                  home
+                  Home
                 </Link>
               </li>
               <li>
-                <Link to="about" className="">
-                  about
+                <Link to="/about" className="">
+                  About
                 </Link>
               </li>
               <li>
-                <Link to="products" className="">
+                <Link to="/products" className="">
                   Products
                 </Link>
               </li>
               <li>
-                <Link to="gallery" className="">
+                <Link to="/gallery" className="">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link to="blog" className="">
+                <Link to="/blog" className="">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="contact" className="">
-                  contact Us
+                <Link to="/contact" className="">
+                  Contact Us
                 </Link>
               </li>
             </ul>
             <div className="header_btn">
               <Link onClick={handleClick} className="shop">
-                <box-icon name='search-alt-2'></box-icon> search
+                <box-icon name='search-alt-2'></box-icon> Search
               </Link>
-              <Link to="cart" className="shop">
-                <box-icon name='cart' ></box-icon> cart
-              </Link>
-              <Link to="login" className="themebtn">
-                log in <box-icon name='chevron-right' ></box-icon>
+              <Link to="/cart" className="shop">
+                <box-icon name='cart' ></box-icon> Cart
+              </Link>   
+              <Link to="/login" className="themebtn">
+                Log in <box-icon name='chevron-right' ></box-icon>
               </Link>
             </div>
           </div>
